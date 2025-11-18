@@ -1,0 +1,55 @@
+name: Deploy Dashboard
+
+on:
+  push:
+    branches:
+      - main
+    paths:
+      - 'dashboard_enhanced.html'
+      - '**.md'
+      - 'src/**'
+
+jobs:
+  deploy:
+    name: Deploy to GitHub Pages
+    runs-on: ubuntu-latest
+    
+    permissions:
+      contents: write
+      pages: write
+      id-token: write
+    
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+        
+      - name: Setup Pages
+        uses: actions/configure-pages@v4
+        
+      - name: Create deployment directory
+        run: |
+          mkdir -p public
+          cp dashboard_enhanced.html public/index.html
+          cp -r *.md public/ || true
+          echo "✅ Dashboard copied to public directory"
+          
+      - name: Upload artifact
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: ./public
+          
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4
+        
+      - name: Deployment summary
+        run: |
+          echo "🚀 Dashboard deployed successfully!"
+          echo "🔗 Access at: https://santhosh-bosch.github.io/Santhosh/"
+          echo ""
+          echo "📊 Deployed Components:"
+          echo "  ✅ 10-vehicle fleet dashboard"
+          echo "  ✅ Speed notification system (80 km/h)"
+          echo "  ✅ Live map (Coimbatore)"
+          echo "  ✅ Real-time charts"
+          echo "  ✅ Documentation"
