@@ -12,7 +12,6 @@ void initTelemetry() {
     currentTelemetry.latitude = 0.0;
     currentTelemetry.longitude = 0.0;
 }
-}
 
 void readTelemetry(TelemetryData* data) {
     // Simulate reading telemetry data from a vehicle
@@ -22,11 +21,8 @@ void readTelemetry(TelemetryData* data) {
     data->longitude = (float)(rand() % 360) - 180; // Simulated longitude
     currentTelemetry = *data;
 }
-}
-
 void processTelemetry(const TelemetryData* data) {
     // Here you can add any processing logic if needed
     // For now, just update currentTelemetry
     currentTelemetry = *data;
-}
 }
