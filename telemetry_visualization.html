@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vehicle Telemetry Visualization</title>
+    <style>
+        body { font-family: Arial, sans-serif; background: #f4f4f4; margin: 0; padding: 0; }
+        .container { max-width: 600px; margin: 40px auto; background: #fff; padding: 24px; border-radius: 8px; box-shadow: 0 2px 8px rgba(0,0,0,0.1); }
+        h1 { text-align: center; color: #333; }
+        .telemetry { margin-top: 24px; }
+        .telemetry label { font-weight: bold; }
+        .telemetry span { margin-left: 8px; color: #0077cc; }
+        .gps { margin-top: 16px; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Vehicle Telemetry Visualization</h1>
+        <div class="telemetry">
+            <div><label>Speed:</label> <span id="speed">--</span> km/h</div>
+            <div><label>Battery Level:</label> <span id="battery">--</span> %</div>
+            <div class="gps">
+                <label>GPS:</label> <span id="latitude">--</span>, <span id="longitude">--</span>
+            </div>
+        </div>
+    </div>
+    <script>
+        // Example: Simulate telemetry data updates
+        function updateTelemetry(speed, battery, latitude, longitude) {
+            document.getElementById('speed').textContent = speed.toFixed(2);
+            document.getElementById('battery').textContent = battery.toFixed(2);
+            document.getElementById('latitude').textContent = latitude.toFixed(6);
+            document.getElementById('longitude').textContent = longitude.toFixed(6);
+        }
+        // Simulate data every 2 seconds
+        setInterval(function() {
+            const speed = Math.random() * 120;
+            const battery = Math.random() * 100;
+            const latitude = (Math.random() * 180) - 90;
+            const longitude = (Math.random() * 360) - 180;
+            updateTelemetry(speed, battery, latitude, longitude);
+        }, 2000);
+    </script>
+</body>
+</html>
